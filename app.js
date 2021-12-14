@@ -19,10 +19,15 @@ app.all('*', function(req, res) {
     const lastVisit = cookies.get('LastVisit', { signed: true })
   
     if (!lastVisit) {
-      // Set the cookie with expiration time one minute (for testing)
-      cookies.set('LastVisit', new Date().toISOString(),
-          { signed: true, maxAge: Date.now() + 60*1000 })
-      res.write('<p>' +  'First visit with cookie' +'</p>');
+        // Set the cookie with expiration time one minute (for testing)
+        cookies.set('LastVisit', new Date().toISOString(),
+          { signed: true, maxAge: Date.now() + 60*1000 , path: '/foo' })
+
+        // try this (what is the difference)
+        //cookies.set('LastVisit', new Date().toISOString(),
+        //    { signed: true, maxAge: Date.now() + 60*1000 , path: '/foo' })
+
+        res.write('<p>' +  'First visit with cookie' +'</p>');
     }
     else
          res.write('<p>' +  'You were here before...' +'</p>');
