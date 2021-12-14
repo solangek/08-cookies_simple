@@ -1,22 +1,22 @@
 
 
-var Cookies = require('cookies')
+const Cookies = require('cookies')
 
 // Optionally define keys to sign cookie values
 // to prevent client tampering
-var keys = ['keyboard cat']
+const keys = ['keyboard cat']
 
-let app = require('express')();
+const app = require('express')();
 
 app.all('*', function(req, res) {
     res.status(200);
     res.setHeader('Content-Type', 'text/html');
 
 
-    var cookies = new Cookies(req, res, { keys: keys })
+    const cookies = new Cookies(req, res, { keys: keys })
 
     // Get the cookie
-    var lastVisit = cookies.get('LastVisit', { signed: true })
+    const lastVisit = cookies.get('LastVisit', { signed: true })
   
     if (!lastVisit) {
       // Set the cookie with expiration time one minute (for testing)
