@@ -1,4 +1,5 @@
 
+// this is a very simple node.js app to demonstrate how to use cookies
 
 const Cookies = require('cookies')
 
@@ -21,16 +22,17 @@ app.all('*', function(req, res) {
     if (!lastVisit) {
         // Set the cookie with expiration time one minute (for testing)
         cookies.set('LastVisit', new Date().toISOString(),
-          { signed: true, maxAge: Date.now() + 60*1000 , path: '/foo' })
+          { signed: true, maxAge: Date.now() + 60*1000 , path: '/' })
 
-        // try this (what is the difference)
+        // try this instead (what is the difference? we give a path to the cookie therefore it is only valid for this path)
         //cookies.set('LastVisit', new Date().toISOString(),
         //    { signed: true, maxAge: Date.now() + 60*1000 , path: '/foo' })
 
-        res.write('<p>' +  'First visit with cookie' +'</p>');
+        // note the HTML produced is not valid. Later we will see how to use a template engine to produce valid HTML
+        res.write('<!DOCTYPE html><html><head></head><body><p>First visit with cookie</p></body></html>');
     }
     else
-         res.write('<p>' +  'You were here before...' +'</p>');
+         res.write('<!DOCTYPE html><html><head></head><body><p>Welcome back!</p></body></html>');
 
 
     res.end();
