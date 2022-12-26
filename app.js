@@ -1,5 +1,7 @@
 
 // this is a very simple node.js app to demonstrate how to use cookies
+// run with: node app.js
+// then visit: http://localhost:3000
 
 const Cookies = require('cookies')
 
